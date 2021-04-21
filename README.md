@@ -5,7 +5,7 @@
 - [x] Score for anything in trayA and trayB
 - [x] Score for food in trayA and trayB
 - [ ] Score for tools in drawers
-- [ ] Score for kitchen items in containerA
+- [x] Score for kitchen items in containerA
 - [ ] Score for orientation-based items in containerB
 - [ ] Score for task items in BinA
 - [ ] Score for unknown items in BinB
