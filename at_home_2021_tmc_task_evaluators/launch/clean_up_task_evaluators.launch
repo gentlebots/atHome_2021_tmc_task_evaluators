@@ -5,12 +5,12 @@
 
   <group if="$(arg use_camera_control)">
     <node pkg="tmc_gazebo_task_evaluators" type="wrs_camera_controller" name="camera_controller" output="screen">
-      <param name="target_model_name" value="$(robot)" />
+      <param name="target_model_name" value="$(arg robot)" />
     </node>
   </group>
 
   <node pkg="tmc_gazebo_task_evaluators" type="undesired_contact_detector" name="undesired_contact_detector" output="screen">
-    <param name="target_model_name" value="$(robot)" />
+    <param name="target_model_name" value="$(arg robot)" />
     <rosparam param="except_model_names">[wrc_ground_plane,'block*']</rosparam>
   </node>
   
