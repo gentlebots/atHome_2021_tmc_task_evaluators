@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="use_camera_control" default="false" />
+  <arg name="robot" default="tiago" />
+
+  <group if="$(arg use_camera_control)">
+    <node pkg="tmc_gazebo_task_evaluators" type="wrs_camera_controller" name="camera_controller" output="screen">
+      <param name="target_model_name" value="$(robot)" />
+    </node>
+  </group>
+
+  <node pkg="tmc_gazebo_task_evaluators" type="undesired_contact_detector" name="undesired_contact_detector" output="screen">
+    <param name="target_model_name" value="$(robot)" />
+    <rosparam param="except_model_names">[wrc_ground_plane,'block*']</rosparam>
+  </node>
+  
+  <!--<node pkg="tmc_gazebo_task_evaluators" type="hhcc_score_counter" name="hhcc_score_counter" output="screen">
+    <param name="per_cleaned_object" value="100" />
+    <param name="collision_per_second" value="-1" />
+  </node>-->
+
+  <node pkg="tmc_gazebo_task_evaluators" type="wrs_score_counter" name="wrs_score_counter" output="screen">
+  </node>
+
+  <node pkg="tmc_gazebo_task_evaluators" type="object_in_box_detector" name="foods_in_trayb_detector" output="screen">
+    <param name="box_name" value="wc_tray_1" />
+    <rosparam param="box_size">[0.48, 0.38, 0.02]</rosparam>
+    <rosparam param="box_pose">[-2.70, -0.75, 0.4]</rosparam>
+    <rosparam param="object_names">
+      [
+        ycb_003_cracker_box, 
+        ycb_004_sugar_box,
+        ycb_008_pudding_box,
+        ycb_009_gelatin_box,
+        ycb_010_potted_meat_can,
+        ycb_002_master_chef_can,
+        ycb_007_tuna_fish_can,
+        pringles,
+        ycb_006_mustard_bottle,
+        ycb_005_tomato_soup_can,
+        ycb_011_banana,
+        ycb_012_strawberry,
+        ycb_013_apple,
+        ycb_014_lemon,
+        ycb_015_peach,
+        ycb_016_pear,
+        ycb_017_orange,
+        ycb_018_plum
+      ]
+    </rosparam>
+  </node>
+
+  <node pkg="tmc_gazebo_task_evaluators" type="object_in_box_detector" name="foods_in_traya_detector" output="screen">
+    <param name="box_name" value="wc_tray_1" />
+    <rosparam param="box_size">[0.48, 0.38, 0.02]</rosparam>
+    <rosparam param="box_pose">[-2.70, -0.45, 0.4]</rosparam>
+    <rosparam param="object_names">
+      [
+        ycb_003_cracker_box, 
+        ycb_004_sugar_box,
+        ycb_008_pudding_box,
+        ycb_009_gelatin_box,
+        ycb_010_potted_meat_can,
+        ycb_002_master_chef_can,
+        ycb_007_tuna_fish_can,
+        ycb_006_mustard_bottle,
+        ycb_005_tomato_soup_can,
+        ycb_011_banana,
+        pringles,
+        ycb_012_strawberry,
+        ycb_013_apple,
+        ycb_014_lemon,
+        ycb_015_peach,
+        ycb_016_pear,
+        ycb_017_orange,
+        ycb_018_plum
+      ]
+    </rosparam>
+  </node>
+
+  <node pkg="tmc_gazebo_task_evaluators" type="object_in_box_detector" name="any_in_trayb_detector" output="screen">
+    <param name="box_name" value="wc_tray_1" />
+    <rosparam param="box_size">[0.48, 0.38, 0.02]</rosparam>
+    <rosparam param="box_pose">[-2.70, -0.75, 0.4]</rosparam>
+    <rosparam param="object_names">['ycb_*', pringles]</rosparam>
+  </node>
+
+  <node pkg="tmc_gazebo_task_evaluators" type="object_in_box_detector" name="any_in_traya_detector" output="screen">
+    <param name="box_name" value="wc_tray_1" />
+    <rosparam param="box_size">[0.48, 0.38, 0.02]</rosparam>
+    <rosparam param="box_pose">[-2.70, -0.45, 0.4]</rosparam>
+    <rosparam param="object_names">['ycb_*', pringles]</rosparam>
+  </node>
+  
+</launch>

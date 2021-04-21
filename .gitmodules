@@ -1,0 +1,3 @@
+[submodule "tmc_gazebo_task_evaluators"]
+	path = tmc_gazebo_task_evaluators
+	url = https://github.com/gentlebots/tmc_gazebo_task_evaluators
